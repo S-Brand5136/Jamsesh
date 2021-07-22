@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_07_22_223126) do
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
+    t.string "session_title"
     t.integer "spots_available"
     t.integer "total_spots"
     t.datetime "start_date"
