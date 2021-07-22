@@ -25,3 +25,9 @@ Jamsesh is an event based service that allows user to create sessions to meet ot
   - Register
   - search for sessions based on location, name
   - view any session
+
+## ERD
+
+- subject to change
+
+-["ERD"](https://github.com/S-Brand5136/Jamsesh/blob/main/docs/jamsesh_erd.png)
