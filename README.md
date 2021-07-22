@@ -1,6 +1,6 @@
 # Jamsesh
 
-Jamsesh is an event based service that allows user to create sessions for other musicians to join in on.
+Jamsesh is an event based service that allows user to create sessions to meet other local musicians
 
 ## Target Audience
 
