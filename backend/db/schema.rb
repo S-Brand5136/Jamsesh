@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 2021_07_22_223126) do
   end
 
   create_table "users_in_sessions", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "session_id", null: false
+    t.bigint "user_id"
+    t.bigint "session_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["session_id"], name: "index_users_in_sessions_on_session_id"
