@@ -4,9 +4,6 @@ RSpec.describe "Users", type: :request do
   # init test data
   let!(:user) { create_user(:user, 10) }
   let(:user_id) { user.first.id }
-  let(:valid_user) { { username: 'Bilbo', email: 'Bilbo@example.com', password: '12345' } }
-  user = User.new( valid_user )
-  user.save()
 
   # Test suite for GET /users
   describe "GET /users" do
@@ -53,6 +50,8 @@ RSpec.describe "Users", type: :request do
   # Test suite for POST /users
   describe 'POST /users' do
     context 'when the request is valid' do 
+      user = User.new( { username: 'Bilbo', email: 'Bilbo@example.com', password: '12345' } )
+      user.save()
       before { post '/users', params: { email: 'Bilbo@example.com', password: '12345' } }  
 
       it 'logs in a user' do
@@ -65,9 +64,9 @@ RSpec.describe "Users", type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/users', params: { email: nil, password: nil }
+      before { post '/users', params: { email: '', password: '' } }
 
-      it 'returns a status code 401'
+      it 'returns a status code 401' do
         expect(response).to have_http_status(401)
       end 
 
