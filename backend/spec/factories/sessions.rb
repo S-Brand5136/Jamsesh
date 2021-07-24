@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :session do
     user_id { Faker::Number.number(10) }
-    session_title { Faker::StarWars.call_sign }
+    session_title { Faker::Movies::StarWars.call_sign }
     spots_available { Faker::Number.number(10) }
     total_spots { Faker::Number.number(10) }
     start_date { Faker::Date.backward(days: rand(8)) }

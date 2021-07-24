@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
-    username { Faker::StarWars.character }
+    username { Faker::Movies::StarWars.character }
     email { Faker::Internet.email }
-    password { Faker::StarWars.planet }
+    password { Faker::Movies::StarWars.planet }
   end
 end
