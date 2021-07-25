@@ -50,7 +50,7 @@ RSpec.describe "Sessions", type: :request do
     end
   end
 
-  # Test suire for POST /sessions
+  # Test suite for POST /sessions
   describe 'POST /sessions' do
     context 'when the request is valid' do
       session = { 
@@ -87,7 +87,7 @@ RSpec.describe "Sessions", type: :request do
     end
   end
 
-  # Test suire for PUT /sessions/:id
+  # Test suite for PUT /sessions/:id
   describe 'PUT /sessions/:id' do
     context 'when the session exists' do
       before { put "/sessions/#{session_id}", params: { session_title: 'exampleTest' } }
