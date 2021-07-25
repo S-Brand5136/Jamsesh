@@ -23,7 +23,7 @@ RSpec.describe "Users", type: :request do
   describe 'GET /users/:id' do
     before { get "/users/#{user_id}" }
 
-    context 'when the record exists' do
+    context 'when the user exists' do
       it 'returns the user' do
         expect(json).not_to be_empty
         expect(json['username']).to eq(users.first.username)
@@ -34,7 +34,7 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    context 'when the record does not exist' do
+    context 'when the user does not exist' do
       let(:user_id) { -1 }
 
       it 'returns status code 404' do
@@ -92,7 +92,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  # Test suire for DELETE /users/:id
+  # Test suite for DELETE /users/:id
   describe 'DELETE /users/:id' do
     before { delete "/users/#{user_id}" }
 
