@@ -2,11 +2,14 @@ require 'rails_helper'
 
 RSpec.describe "Sessions", type: :request do
   # init test data
+  let!(:users) { create_list(:user, 1) }
+  let(:user_id) { users.first.id }
+
   let!(:sessions) { create_list(:session, 10) }
   let(:session_id) { sessions.first.id }
 
   # Test suite for GET /sessions
-  describe "GET /sessions" dp
+  describe "GET /sessions" do
     before { get '/sessions' }
 
     it 'returns sessions' do
@@ -20,7 +23,7 @@ RSpec.describe "Sessions", type: :request do
   end
 
   # Test suite for GET /sessions/:id
-  describe
+  describe 'GET /sessions/:id' do
     before { get "/sessions/#{session_id}" }
 
     context 'when the session exists' do
@@ -59,7 +62,7 @@ RSpec.describe "Sessions", type: :request do
         start_time: '2021-07-22 12:30:59 -0700', 
         end_time: '2021-07-22 1:30:59 -0700', 
       }
-        before { post '/sessions', params { session } }
+        before { post '/sessions', params:  session  }
 
         it 'creates a new session' do
           expect(json['session_title']).to eq('example title')
@@ -69,7 +72,7 @@ RSpec.describe "Sessions", type: :request do
           expect(response).to have_http_status(200);
         end
       end
-    end
+    
 
     context 'when the request is invalid' do
       before { post '/sessions', params: { session: nil } }
@@ -101,12 +104,11 @@ RSpec.describe "Sessions", type: :request do
   end
 
   # Test suite for DELETE /sessions/:id
-  describe
+  describe 'DELETE /sessions/:id' do
     before { delete "/sessions/#{session_id}" }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
     end
   end
-
 end
