@@ -25,11 +25,12 @@ RSpec.describe "Sessions", type: :request do
   # Test suite for GET /sessions/:id
   describe 'GET /sessions/:id' do
     before { get "/sessions/#{session_id}" }
-
+    
     context 'when the session exists' do
       it 'returns the session' do
         expect(json).not_to be_empty
-        expect(json['session_title']).to eq(sessions.first.session_title)
+        expect(json.first['session'])
+        expect(json.last['owner'])
       end
 
       it 'returns status code 200' do
@@ -37,11 +38,11 @@ RSpec.describe "Sessions", type: :request do
       end
     end
 
-    context 'when the user does not exist' do
+    context 'when the session does not exist' do
       let(:session_id) { -1 }
 
       it 'returns status code 404' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(404)
       end
 
       it 'returns a not found message' do
@@ -53,36 +54,39 @@ RSpec.describe "Sessions", type: :request do
   # Test suite for POST /sessions
   describe 'POST /sessions' do
     context 'when the request is valid' do
-      session = { 
-        user_id: 1, 
-        session_title: 'example title',
-        spots_available: 10, 
-        total_spots: 1, 
-        start_date: '2021-07-21 ', 
-        start_time: '2021-07-22 12:30:59 -0700', 
-        end_time: '2021-07-22 1:30:59 -0700', 
-      }
-        before { post '/sessions', params:  session  }
 
         it 'creates a new session' do
-          expect(json['session_title']).to eq('example title')
-        end
+          session = { 
+            user_id: sessions.first.user_id, 
+            session_title: 'example title',
+            spots_available: 10, 
+            total_spots: 1, 
+            start_date: '2021-07-21 ', 
+            start_time: '2021-07-22 12:30:59 -0700', 
+            end_time: '2021-07-22 1:30:59 -0700', 
+          }
+          post '/sessions', params: session
 
-        it 'returns status code 200' do
+          expect(json['session_title'])
           expect(response).to have_http_status(200);
         end
       end
     
 
     context 'when the request is invalid' do
-      before { post '/sessions', params: { session: nil } }
-
       it 'returns a status code 401' do
-       expect(response).to have_http_status(401)
-      end
-
-      it 'returns a validation failure message' do 
-        expect(response.body).to match(/Error: /)
+        session = { 
+          user_id: sessions.first.user_id,  
+          session_title: '',
+          spots_available: -1, 
+          total_spots: -1, 
+          start_date: ' ', 
+          start_time: '', 
+          end_time: '', 
+        }
+        post '/sessions', params: session       
+        expect(response).to have_http_status(422)
+        expect(response.body).to match(/Validation failed: /)
       end
     end
   end
@@ -94,7 +98,7 @@ RSpec.describe "Sessions", type: :request do
 
       it 'updates the session' do 
         expect(json).not_to be_empty
-        expect(json['username']).to eq('exampleTest')
+        expect(json['session_title']).to eq('exampleTest')
       end
 
       it 'returns status code 200' do

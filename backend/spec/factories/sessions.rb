@@ -7,5 +7,6 @@ FactoryBot.define do
     start_date { Faker::Date.backward(days: rand(8)) }
     start_time { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default) }
     end_time { Faker::Time.between(from: DateTime.now, to: DateTime.now + 3) }
+    association :user, factory: :user
   end
 end
