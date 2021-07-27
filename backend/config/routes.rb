@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   resources :sessions do 
 
   end
+
+  resources :users_in_sessions, path: "attendees" do
+
+  end
 end
