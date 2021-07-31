@@ -1,5 +1,9 @@
 header.root {
   flex-grow: 1;
+  background-color: transparent;
+  box-shadow: none;
+  color: black;
+  border-bottom: 1px solid #e6e6e6;
 
   .menu-button {
     margin-right: 0.5rem;
@@ -8,4 +12,13 @@ header.root {
   .title {
     flex-grow: 1;
   }
+}
+
+h6.drawer-title {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

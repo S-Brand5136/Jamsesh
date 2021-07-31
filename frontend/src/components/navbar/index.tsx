@@ -1,20 +1,94 @@
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@material-ui/core'
-import { Menu } from '@material-ui/icons'
+import { useState } from 'react';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  createStyles,
+  Theme,
+  makeStyles,
+  Hidden,
+} from '@material-ui/core';
+import { Menu } from '@material-ui/icons';
 
-const Header = () => {
+import MenuNav from './MenuNav';
+
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    drawer: {
+      [theme.breakpoints.up('sm')]: {
+        width: drawerWidth,
+        flexShrink: 0,
+      },
+    },
+    appBar: {
+      [theme.breakpoints.up('sm')]: {
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
+      },
+    },
+    menuButton: {
+      [theme.breakpoints.up('sm')]: {
+        display: 'none',
+      },
+    },
+    toolbar: theme.mixins.toolbar,
+    drawerPaper: {
+      width: drawerWidth,
+    },
+  })
+);
+
+const Header: React.FC = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const classes = useStyles();
+
+  const handleDrawerToggle = () => {
+    setMobileOpen((state) => !state);
+  };
+
   return (
-      <AppBar position='static' className='root'>
+    <>
+      <AppBar position='fixed' className={`root ${classes.appBar}`}>
         <Toolbar>
-          <IconButton className='menu-button' edge='start' color='inherit' aria-label='menu'>
+          <IconButton
+            className={`menu-button ${classes.menuButton}`}
+            edge='start'
+            color='inherit'
+            aria-label='open menu'
+            onClick={handleDrawerToggle}
+          >
             <Menu />
           </IconButton>
           <Typography variant='h6' className='title'>
             JamSesh
           </Typography>
-          <Button color='inherit'>Login</Button>
         </Toolbar>
       </AppBar>
-  )
-}
+      <nav className={classes.drawer}>
+        <Hidden smUp>
+          <MenuNav
+            isOpen={mobileOpen}
+            classes={classes.drawerPaper}
+            onClose={() => handleDrawerToggle()}
+            ModalProps={{ keepMounted: true }}
+            variant='temporary'
+            Toolbar={classes.toolbar}
+          />
+        </Hidden>
+        <Hidden xsDown>
+          <MenuNav
+            isOpen={true}
+            classes={classes.drawerPaper}
+            variant='permanent'
+            Toolbar={classes.toolbar}
+          />
+        </Hidden>
+      </nav>
+    </>
+  );
+};
 
-export default Header
+export default Header;

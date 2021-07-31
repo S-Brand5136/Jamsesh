@@ -1,14 +1,10 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 import {} from '@material-ui/core';
 import {} from '@material-ui/icons';
 
 const Register: React.FC<void> = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default Register
+export default Register;
