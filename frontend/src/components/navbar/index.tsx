@@ -13,7 +13,7 @@ import { Menu } from '@material-ui/icons';
 
 import MenuNav from './MenuNav';
 
-const drawerWidth = 240;
+const drawerWidth = '100%';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     appBar: {
       [theme.breakpoints.up('sm')]: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
+        width: `calc(100% - 240px)`,
+        marginLeft: 240,
       },
     },
     menuButton: {
@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme: Theme) =>
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
       width: drawerWidth,
+      [theme.breakpoints.up('sm')]: {
+        width: 240,
+      },
     },
   })
 );
