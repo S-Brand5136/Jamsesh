@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className='App'>
       <Header />
       <Router>
         <Route path='/' component={HomePage} exact />
@@ -15,6 +15,6 @@ const App = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
