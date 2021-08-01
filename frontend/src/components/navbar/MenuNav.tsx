@@ -1,5 +1,5 @@
 import { Button, Drawer, Divider, Typography, Hidden } from '@material-ui/core';
-import {} from '@material-ui/icons';
+import { Close } from '@material-ui/icons';
 
 import Login from './Login';
 import Register from './Register';
@@ -34,9 +34,12 @@ const MenuNav: React.FC<Props> = ({
     >
       <div className={Toolbar}>
         <Hidden smUp>
-          <Typography variant='h6' className='drawer-title'>
-            JamSesh
-          </Typography>
+          <div className='drawer-title'>
+            <Typography variant='h6'>JamSesh</Typography>
+            <Button onClick={() => onClose && onClose()}>
+              <Close />
+            </Button>
+          </div>
         </Hidden>
       </div>
       <Divider />

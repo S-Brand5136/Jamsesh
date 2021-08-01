@@ -14,11 +14,15 @@ header.root {
   }
 }
 
-h6.drawer-title {
+.drawer-title {
   text-align: center;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+
+  h6 {
+    margin-left: 1rem;
+  }
 }
