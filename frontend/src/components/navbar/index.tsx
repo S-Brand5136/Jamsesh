@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 
-import MenuNav from './MenuNav';
+import MenuNav from './Menu';
 
 const drawerWidth = '100%';
 
