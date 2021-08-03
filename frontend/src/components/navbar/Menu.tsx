@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Drawer, Divider, Typography, Hidden } from '@material-ui/core';
-import { Close, Person, PersonAdd } from '@material-ui/icons';
+import { Close } from '@material-ui/icons';
 
 import VisitorMenu from './VisitorMenu';
 import UserMenu from './UserMenu';
