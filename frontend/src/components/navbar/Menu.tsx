@@ -9,7 +9,7 @@ interface Props {
   isOpen: boolean;
   classes: any;
   variant: any;
-  onClose?: () => void;
+  onClose?: any;
   ModalProps?: any;
   Toolbar?: any;
 }
@@ -49,8 +49,8 @@ const Menu: React.FC<Props> = ({
         </Hidden>
       </div>
       <Divider />
-      {view === SET_DEFAULT && <VisitorMenu />}
-      {view === SET_USER && <UserMenu />}
+      {view === SET_DEFAULT && <VisitorMenu onClose={() => onClose()} />}
+      {view === SET_USER && <UserMenu onClose={() => onClose()} />}
     </Drawer>
   );
 };
