@@ -8,11 +8,11 @@ import HomePage from './pages/HomePage';
 const App = () => {
   return (
     <div className='App'>
-      <Header />
       <Router>
+        <Header />
         <Route path='/' component={HomePage} exact />
+        <Footer />
       </Router>
-      <Footer />
     </div>
   );
 };
