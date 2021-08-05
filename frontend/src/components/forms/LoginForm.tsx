@@ -44,6 +44,7 @@ const LoginForm = () => {
         <Grid item xs={12}>
           <Button
             type='submit'
+            color='primary'
             fullWidth={true}
             variant='contained'
             onClick={() => submitHandler()}
